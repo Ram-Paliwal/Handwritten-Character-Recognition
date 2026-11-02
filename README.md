@@ -1,72 +1,83 @@
-[README.md](https://github.com/user-attachments/files/34284886/README.md)
-
+[README (1).md](https://github.com/user-attachments/files/34285027/README.1.md)
 # Handwritten Character Recognition using CNN
 
-A deep-learning project that classifies handwritten digits and letters using a Convolutional Neural Network (CNN) trained on the **EMNIST Balanced** dataset.
+A deep-learning project that recognizes individual handwritten digits and letters using a Convolutional Neural Network (CNN) trained on the **EMNIST Balanced** dataset.
 
-## Project overview
+## Project objective
 
-The goal is to recognize a single handwritten character from a 28 × 28 grayscale image. The model predicts one of 47 classes: digits, uppercase letters, and selected lowercase letters.
+The objective is to identify a handwritten character from an input image. The project uses image preprocessing and a CNN to classify an image into one of 47 character classes.
 
 ## Dataset
 
-- **Dataset:** EMNIST Balanced
-- **Training images:** 112,800
-- **Test images:** 18,800
-- **Image size:** 28 × 28 pixels
-- **Number of classes:** 47
+This project uses **EMNIST Balanced**.
 
-The notebook downloads the dataset files and prepares the images for training.
+| Detail | Value |
+|---|---:|
+| Training images | 112,800 |
+| Test images | 18,800 |
+| Number of classes | 47 |
+| Image dimensions | 28 × 28 pixels |
+| Image format | Grayscale |
 
-## Technologies
+The notebook downloads the dataset files, loads the images and labels, and prepares the data for model training.
+
+## Technologies used
 
 - Python
-- TensorFlow / Keras
+- Google Colab
+- TensorFlow and Keras
 - NumPy
 - OpenCV
 - Matplotlib
 - scikit-learn
-- Google Colab
+- Pillow
 
-## Model
+## Model architecture
 
-The project uses a CNN with convolutional layers, batch normalization, ReLU activations, max pooling, dropout, and a 47-class softmax output. Data augmentation is used during training to expose the model to handwriting variations.
+The project uses a Convolutional Neural Network with:
 
-## Example predictions
+1. Convolutional layers to learn visual features such as edges, curves, and strokes.
+2. Batch normalization to help stabilize training.
+3. ReLU activation functions.
+4. Max-pooling to reduce spatial dimensions.
+5. Global average pooling.
+6. Dropout to help reduce overfitting.
+7. Dense layers for classification.
+8. A 47-unit softmax output layer.
 
-The image below shows predictions on ten samples from the EMNIST test set. **9 of the 10 displayed examples are classified correctly**; the sample whose actual label is `q` is predicted as `9`.
+The notebook also includes data augmentation during training to help the model handle variations in handwriting.
 
-![CNN predictions on EMNIST test samples](assets/prediction_results.png)
+## Project features
 
-## Features
-
-- EMNIST Balanced dataset loading
-- Image preprocessing and normalization
-- CNN training and validation
-- Accuracy and loss plots
-- Classification report and confusion matrix
-- Predictions on test samples
+- Loading the EMNIST Balanced dataset
+- Image orientation correction and normalization
+- Training, validation, and test data split
+- CNN model training
+- Training accuracy and loss plots
+- Test-set evaluation
+- Classification report with precision, recall, and F1-score
+- Confusion matrix
 - Custom image upload and single-character prediction
-- Saving the trained model and class mapping
+- Saving the trained model and supporting evaluation files
 
-## Run the project
+## How to run
 
-1. Open `Handwritten_Character_Recognition.ipynb` in Google Colab.
-2. Select a GPU runtime if one is available.
+1. Open `Handwritten_Character_Recognition.ipynb` in [Google Colab](https://colab.research.google.com/).
+2. In Colab, select **Runtime → Change runtime type** and choose a GPU if one is available.
 3. Run the notebook cells in order.
-4. Allow the EMNIST dataset files to download.
+4. Allow the EMNIST files to download when the dataset-loading cell runs.
 5. Train the CNN and review the evaluation results.
-6. Upload an image containing one handwritten character to try custom prediction.
+6. Use the custom image prediction section to upload an image containing one handwritten character.
 
-## Repository structure
+> The notebook downloads the dataset at runtime. You do not need to upload the raw EMNIST dataset to this repository.
+
+## Repository contents
 
 ```text
 Handwritten-Character-Recognition/
 ├── Handwritten_Character_Recognition.ipynb
 ├── README.md
 ├── requirements.txt
-├── assets/
-│   └── prediction_results.png
 └── emnist_project/
     ├── emnist_balanced_cnn.keras
     ├── class_names.json
@@ -75,14 +86,22 @@ Handwritten-Character-Recognition/
     └── test_metrics.json
 ```
 
-The model and evaluation files are created by the notebook's save/export cells. Include them in the repository if you want others to download and reuse the trained model.
+The `emnist_project/` files are generated by the notebook's save/export section. If you have not uploaded those files yet, the notebook can still be published and run independently.
 
-## Notes
+## Results
 
-- The displayed results are sample predictions, not a substitute for the complete test-set metrics.
-- Custom handwriting images can differ from EMNIST samples in stroke thickness, spacing, centering, and writing style. Custom-image accuracy may therefore vary.
-- The EMNIST dataset is provided by the National Institute of Standards and Technology (NIST).
+The notebook generates the actual test accuracy, loss, classification report, and confusion matrix after evaluation. Refer to the notebook output or `emnist_project/test_metrics.json` for the measured results.
 
-## Reference
+No fixed accuracy is stated here because the reported result should come from the model run being published.
+
+## Limitations
+
+- The current model predicts one character per image; it does not recognize complete words or sentences.
+- Handwriting style, image quality, character size, stroke thickness, and preprocessing can affect custom-image predictions.
+- Word and sentence recognition would require a sequence-based approach, such as a CRNN with CTC decoding.
+
+## Dataset reference
 
 Cohen, G., Afshar, S., Tapson, J., & van Schaik, A. (2017). *EMNIST: An Extension of MNIST to Handwritten Letters.*
+
+Dataset information: https://www.nist.gov/itl/products-and-services/emnist-dataset
