@@ -1,5 +1,4 @@
-[README (1).md](https://github.com/user-attachments/files/34285027/README.1.md)
-# Handwritten Character Recognition using CNN
+#Handwritten Character Recognition using CNN
 
 A deep-learning project that recognizes individual handwritten digits and letters using a Convolutional Neural Network (CNN) trained on the **EMNIST Balanced** dataset.
 
